@@ -1,41 +1,57 @@
 import PropTypes from 'prop-types';
+import {
+  ProfileWrap,
+  Description,
+  Avatar,
+  Name,
+  Tag,
+  Location,
+  Stats,
+  ListItem,
+  Label,
+  Quantity,
+} from './Profile.styled';
 
-export const Profile = ({ username,tag,location,avatar,stats: { followers, views, likes } }) => {
-    return (
-      <div class="profile">
-  <div class="description">
-    <img
-      src={avatar}
-      alt="User avatar"
-      class="avatar"
-    />
-    <p class="name">{username}</p>
-    <p class="tag">{tag}</p>
-    <p class="location">{location}</p>
-  </div>
+export const Profile = ({ username, tag, location, avatar, stats }) => {
+  return (
+    <ProfileWrap>
+      <Description>
+        <Avatar src={avatar} alt={username} />
+        <Name>{username}</Name>
+        <Tag>@{tag}</Tag>
+        <Location>{location}</Location>
+      </Description>
 
-  <ul class="stats">
-    <li>
-      <span class="label">Followers</span>
-      <span class="quantity">{followers}</span>
-    </li>
-    <li>
-      <span class="label">Views</span>
-      <span class="quantity">{views}</span>
-    </li>
-    <li>
-      <span class="label">Likes</span>
-      <span class="quantity">{likes}</span>
-    </li>
-  </ul>
-</div>
+      <Stats>
+        <ListItem>
+          <Label>Followers</Label>
+          <Quantity>{stats.followers}</Quantity>
+        </ListItem>
+        <ListItem>
+          <Label>Views</Label>
+          <Quantity>{stats.views}</Quantity>
+        </ListItem>
+        <ListItem>
+          <Label>Likes</Label>
+          <Quantity>{stats.likes}</Quantity>
+        </ListItem>
+      </Stats>
+    </ProfileWrap>
   );
 };
 
 Profile.propTypes = {
-  avatar: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   tag: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  stats: PropTypes.object.isRequired,
+  avatar: PropTypes.string.isRequired,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      followers: PropTypes.number.isRequired,
+      views: PropTypes.number.isRequired,
+      likes: PropTypes.number.isRequired,
+    }).isRequired
+  ).isRequired,
 };
+
+export default Profile;

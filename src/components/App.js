@@ -11,6 +11,8 @@ import friends from '../data/friends.json';
 import { TransactionHistory } from './TransactionHistory/TransactionHistory';
 import transactions from '../data/transactions.json';
 
+import { GlobalStyle } from './GlobalStyle';
+
 
 export const App = () => {
   return (
@@ -27,7 +29,9 @@ export const App = () => {
   
       <FriendList friends={friends} />;
       <TransactionHistory items={transactions} />;
-
+    
+      <GlobalStyle />
     </div>
   );
 };
+
