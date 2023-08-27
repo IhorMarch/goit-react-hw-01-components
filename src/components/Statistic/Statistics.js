@@ -15,7 +15,7 @@ import {
 export const Statistics = ({ title,stats}) => {
     return (
      <StatisticsSection>
-  <Title>{title}</Title>
+ {title && <Title>{title}</Title>}
 
             <StatList>
                 {stats.map(item => (
@@ -36,6 +36,7 @@ Statistics.propTypes = {
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
+      stats:PropTypes.string
     })
   ).isRequired,
 };
